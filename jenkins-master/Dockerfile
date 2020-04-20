@@ -2,6 +2,8 @@ FROM jenkins/jenkins:lts
 
 ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false
 
+USER root
+
 # PAM Authentication
 RUN /usr/local/bin/install-plugins.sh pam-auth
 # LDPA
@@ -49,7 +51,6 @@ RUN /usr/local/bin/install-plugins.sh ssh-slaves
 # Scaling
 RUN /usr/local/bin/install-plugins.sh kubernetes
 
-USER root
 # install Maven
 RUN apt-get update && apt-get install -y maven
 
@@ -91,7 +92,7 @@ RUN usermod -aG docker root
 
 # start docker
 RUN sed -i 's/ulimit -n 1048576/ulimit -n 65536/' /etc/init.d/docker
-RUN service docker start
+# RUN service docker start
 
 # USER jenkins
 EXPOSE 8080
