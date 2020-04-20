@@ -1,0 +1,14 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: jenkins-slave
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: jenkins
+    spec:
+      containers:
+        - name: jenkins-slave
+          image: jenkinsci/jnlp-slave
