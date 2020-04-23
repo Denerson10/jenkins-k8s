@@ -1,0 +1,28 @@
+Started by timer
+Running as SYSTEM
+Building in workspace /var/jenkins_home/workspace/__jobs-pipeline__
+[WS-CLEANUP] Deleting project workspace...
+[WS-CLEANUP] Deferred wipeout is used...
+using credential 39c19e12-311b-4dd8-b402-a2c3f062ee5e
+Cloning the remote Git repository
+Cloning repository git@bitbucket.org:pravaler/__jobs-pipeline__.git
+ > git init /var/jenkins_home/workspace/__jobs-pipeline__ # timeout=10
+Fetching upstream changes from git@bitbucket.org:pravaler/__jobs-pipeline__.git
+ > git --version # timeout=10
+using GIT_SSH to set credentials 
+ > git fetch --tags --progress -- git@bitbucket.org:pravaler/__jobs-pipeline__.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git config remote.origin.url git@bitbucket.org:pravaler/__jobs-pipeline__.git # timeout=10
+ > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git config remote.origin.url git@bitbucket.org:pravaler/__jobs-pipeline__.git # timeout=10
+Fetching upstream changes from git@bitbucket.org:pravaler/__jobs-pipeline__.git
+using GIT_SSH to set credentials 
+ > git fetch --tags --progress -- git@bitbucket.org:pravaler/__jobs-pipeline__.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+Seen branch in repository origin/signature
+Seen 1 remote branch
+ > git show-ref --tags -d # timeout=10
+Checking out Revision d21c14cf8c4b8e1b359ebd0bcdd483e32a7d5ad2 (origin/signature)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f d21c14cf8c4b8e1b359ebd0bcdd483e32a7d5ad2 # timeout=10
+Commit message: "Creating job for signature project"
+First time build. Skipping changelog.
+Finished: SUCCESS

@@ -1,9 +1,11 @@
 FROM jenkins/jenkins:lts
 
-ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false
+ENV JAVA_OPTS="-Djenkins.install.runSetupWizard=false -Dhudson.security.csrf.GlobalCrumbIssuerConfiguration=true" 
 
 USER root
 
+# JOB as a code
+RUN /usr/local/bin/install-plugins.sh job-dsl
 # PAM Authentication
 RUN /usr/local/bin/install-plugins.sh pam-auth
 # LDPA
@@ -44,15 +46,13 @@ RUN /usr/local/bin/install-plugins.sh matrix-auth
 RUN /usr/local/bin/install-plugins.sh credentials-binding
 # Configuration as a Code
 RUN /usr/local/bin/install-plugins.sh configuration-as-code
-
 # Distributed Builds plugins
 RUN /usr/local/bin/install-plugins.sh ssh-slaves
-
 # Scaling
 RUN /usr/local/bin/install-plugins.sh kubernetes
-
 # install Maven
 RUN apt-get update && apt-get install -y maven
+
 
 # install aws-cli
 RUN apt-get update
@@ -72,6 +72,7 @@ RUN apt-get update \
     curl \
     software-properties-common
 
+#install cointainerd
 RUN curl -O https://download.docker.com/linux/ubuntu/dists/bionic/pool/edge/amd64/containerd.io_1.2.2-3_amd64.deb \
     && apt install ./containerd.io_1.2.2-3_amd64.deb 
 
@@ -80,19 +81,21 @@ RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - \
     && add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable" \
     && apt-get update && apt-cache policy docker-ce
 
-# docker
+# installing docker
 RUN apt-get -y install docker-ce
 
 # docker-compose
 RUN curl -L https://github.com/docker/compose/releases/download/1.16.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose \
     && chmod +x /usr/local/bin/docker-compose
 
-# give jenkins docker rights
+# give docker docker rights
 RUN usermod -aG docker root
 
 # start docker
 RUN sed -i 's/ulimit -n 1048576/ulimit -n 65536/' /etc/init.d/docker
 # RUN service docker start
 
-# USER jenkins
+COPY ./jenkins_home /var/jenkins_home
+COPY ./keys ~/.ssh
+
 EXPOSE 8080

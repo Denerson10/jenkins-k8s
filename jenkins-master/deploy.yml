@@ -13,12 +13,12 @@ spec:
         fsGroup: 2000
       containers:
         - name: jenkins
-          image: icarorobertos/jk:1.0
+          image: mikedouglas7/jenkin-prod:1.6
           command: ["/bin/sh"]
-          args:
-            [
+          args: [
               "-c",
-              "for i in /etc/init.d/*; do $i start; done; tail -f /dev/null",
+              "for i in /etc/init.d/*; do $i start; done;
+              /usr/local/bin/jenkins.sh",
             ]
           securityContext:
             runAsUser: 0
@@ -44,9 +44,3 @@ spec:
               containerPort: 8080
             - name: jnlp-port
               containerPort: 5000
-          volumeMounts:
-            - name: jenkins-home
-              mountPath: /var/jenkins_home
-      volumes:
-        - name: jenkins-home
-          emptyDir: {}

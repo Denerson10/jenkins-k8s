@@ -1,1 +1,0 @@
-for i in /etc/init.d/*; do $i start; done;
