@@ -1,4 +1,4 @@
-FROM ubuntu:bionic
+FROM ubuntu:18.04
 
 RUN apt-get update && apt-get install software-properties-common wget curl -y
 RUN add-apt-repository ppa:linuxuprising/java

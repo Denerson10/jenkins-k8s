@@ -10,7 +10,7 @@ spec:
         app: jenkins
     spec:
       securityContext:
-        fsGroup: 412
+        fsGroup: 999
       containers:
         - name: jenkins
           image: mikedouglas7/jenkins-master:1.9
@@ -25,6 +25,12 @@ spec:
             capabilities:
               add: ["NET_ADMIN"]
           env:
+            - name: POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+            - name: DOCKER_HOST
+              value: tcp://localhost:2375
             - name: LIMITS_MEMORY
               valueFrom:
                 resourceFieldRef:
@@ -34,20 +40,30 @@ spec:
               value: -Djenkins.install.runSetupWizard=false -Xmx$(LIMITS_MEMORY)m -XshowSettings:vm -Dhudson.slaves.NodeProvisioner.initialDelay=0 -Dhudson.slaves.NodeProvisioner.MARGIN=50 -Dhudson.slaves.NodeProvisioner.MARGIN0=0.85 -Djava.net.preferIPv4Stack=true -Dhudson.security.csrf.GlobalCrumbIssuerConfiguration=true
           resources:
             limits:
-              cpu: "2"
-              memory: 2Gi
+              cpu: "1"
+              memory: 1Gi
             requests:
-              cpu: "2"
-              memory: 2000Mi
+              cpu: "1"
+              memory: 1000Mi
           ports:
             - name: http-port
               containerPort: 8080
             - name: jnlp-port
               containerPort: 5000
+        - name: dind
+          image: docker:18.05-dind
+          securityContext:
+            privileged: true
+          resources:
+            limits:
+              cpu: "1"
+              memory: 500Mi
+            requests:
+              cpu: "1"
+              memory: 500Mi
           volumeMounts:
-            - name: jenkins-persistent-storage
+            - name: dind-storage
               mountPath: /var/lib/docker
       volumes:
-        - name: jenkins-persistent-storage
-          persistentVolumeClaim:
-            claimName: pvc
+        - name: dind-storage
+          emptyDir: {}
