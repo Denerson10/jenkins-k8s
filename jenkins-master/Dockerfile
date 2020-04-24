@@ -89,13 +89,18 @@ RUN curl -L https://github.com/docker/compose/releases/download/1.16.1/docker-co
     && chmod +x /usr/local/bin/docker-compose
 
 # give docker docker rights
-RUN usermod -aG docker root
-
+RUN usermod -aG docker jenkins
+# ?:
 # start docker
 RUN sed -i 's/ulimit -n 1048576/ulimit -n 65536/' /etc/init.d/docker
 # RUN service docker start
 
 COPY ./jenkins_home /var/jenkins_home
 COPY ./keys ~/.ssh
+
+RUN rm -rf /var/lib/apt/lists/*
+RUN echo "jenkins ALL=NOPASSWD: ALL" >> /etc/sudoers
+
+USER jenkins
 
 EXPOSE 8080

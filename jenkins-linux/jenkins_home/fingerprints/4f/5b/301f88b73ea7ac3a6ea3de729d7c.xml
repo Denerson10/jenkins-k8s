@@ -1,0 +1,13 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<fingerprint>
+  <timestamp>2020-04-23 20:10:01.112 UTC</timestamp>
+  <md5sum>4f5b301f88b73ea7ac3a6ea3de729d7c</md5sum>
+  <fileName>Credential id=39c19e12-311b-4dd8-b402-a2c3f062ee5e name=git</fileName>
+  <usages>
+    <entry>
+      <string>__jobs-pipeline__</string>
+      <ranges>1-2</ranges>
+    </entry>
+  </usages>
+  <facets/>
+</fingerprint>

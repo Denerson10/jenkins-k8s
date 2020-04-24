@@ -1,0 +1,30 @@
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUN5RENDQWJDZ0F3SUJBZ0lCQURBTkJna3Foa2lHOXcwQkFRc0ZBREFWTVJNd0VRWURWUVFERXdwcmRXSmwKY201bGRHVnpNQjRYRFRJd01EUXhOekUyTlRJeE1sb1hEVE13TURReE5URTJOVEl4TWxvd0ZURVRNQkVHQTFVRQpBeE1LYTNWaVpYSnVaWFJsY3pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBTWs0CnA5YnQxSmpLc3FWQkFicDUyQ3MxOStSVXdBTTMvTXdLb2Q3R1o4ZFlacFU1Z2tOSWNKaFpRVnhPbzZEcHdGL1MKR2pQa214NnFEZGRyU0JkMFRJQWEvY1U1TnA5ZFlVTjdiZEJGTWlGZjJoU3Z3ZVRDdTNOWFdjZ3JBUDF2dElrcwpXUzdsa3NnREdIT1N5SmxQQktBbmVLVHhGTkNJaTlNWEZLWGViOW5ub3l3NllTdml0V3plRmRaMlpndXJlSG82ClNkY01QUlNIbjRNV1drdUxWMEFYbTlZUEdSL0FyWjI5aUFRa0lkNmtGcUZIUmdrandCbUJTRzg3K1FhSVEvOGgKYzhKSzFoRERvNHlRbFpPOVM5YkhWWk41Z1dqWUdiUFBmU2ZyS1h1elRDVksra1NuT1k0b2RHNENpa01SYUZLaAo0S08zMkxqMHVOS2NOS2VyTWI4Q0F3RUFBYU1qTUNFd0RnWURWUjBQQVFIL0JBUURBZ0trTUE4R0ExVWRFd0VCCi93UUZNQU1CQWY4d0RRWUpLb1pJaHZjTkFRRUxCUUFEZ2dFQkFNWTJGSW1SNjdrYzVhU1plU2Jra3E3Vi9DQ0IKNFk1L20zOW1yMHNzSzdpenZyWFp3UjFYNTcxbEhNRUhpeVpHbG5Gc1RMSFd1U2VEdVVLdUZLNGdVOFVrVkhBZQoydjJheGkvZi90c2g5YUR6YW12cG45QlRVa3hyZW9GcElVUDZRaTZPZEp0dGMvN2k1KytNUlRxSkFoYmFsM1I0CmdsdU91eFFsUmoxY2RyaUwrTTFvN2ViQ01XbGhiYURJZUo4WlA1QlF6NWtYVEE4YWU3akVCemJUNzB3UzRmSUUKaWs1cWFiQkNBSlFGdytHWkJaYU1FOFVDV2sxSGw5NzRHS3NXNFhGK1VDVkdFVTRwaWdsanZmbytDczhVOWJZMApmU0ZoSFdZV3MyYTBKb0txRTVIM2sxYXN3WEQrZFgzNERCRmxJUmZTZGc5K0RKdncvYjBWcUlWMThPWT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
+    server: https://85449E1B5AD8AC1C8F26F278BCCEA50A.sk1.us-east-1.eks.amazonaws.com
+  name: arn:aws:eks:us-east-1:480721595399:cluster/cluster-teste
+contexts:
+- context:
+    cluster: arn:aws:eks:us-east-1:480721595399:cluster/cluster-teste
+    user: arn:aws:eks:us-east-1:480721595399:cluster/cluster-teste
+  name: arn:aws:eks:us-east-1:480721595399:cluster/cluster-teste
+current-context: arn:aws:eks:us-east-1:480721595399:cluster/cluster-teste
+kind: Config
+preferences: {}
+users:
+- name: arn:aws:eks:us-east-1:480721595399:cluster/cluster-teste
+  user:
+    exec:
+      apiVersion: client.authentication.k8s.io/v1alpha1
+      args:
+      - --region
+      - us-east-1
+      - eks
+      - get-token
+      - --cluster-name
+      - cluster-teste
+      command: aws
+      env:
+      - name: AWS_PROFILE
+        value: pravaler-new-cluster
