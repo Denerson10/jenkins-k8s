@@ -13,7 +13,7 @@ spec:
         fsGroup: 999
       containers:
         - name: jenkins
-          image: michaeldbs/jenkins-master:1.5
+          image: michaeldbs/jenkins-master:1.6
           command: ["/bin/sh"]
           args: [
               "-c",
@@ -51,13 +51,13 @@ spec:
             - name: jnlp-port
               containerPort: 5000
         - name: jenkins-cli
-          image: michaeldbs/jenkins-master:1.5
+          image: michaeldbs/jenkins-master:1.6
           command: ["/bin/sh"]
           args: ["-c", "./jenkins_config/config.sh"]
           resources:
             limits:
               cpu: "1"
-              memory: 500Mi
+              memory: 250Mi
             requests:
               cpu: "1"
-              memory: 500Mi
+              memory: 250Mi
