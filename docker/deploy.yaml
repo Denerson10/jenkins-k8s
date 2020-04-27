@@ -23,10 +23,10 @@ spec:
             requests:
               cpu: "1"
               memory: 500Mi
-            ports:
-              - name: docker-deamon
-                containerPort: 2375
-                protocol: TCP
+          ports:
+            - name: docker-deamon
+              containerPort: 2375
+              protocol: TCP
           volumeMounts:
             - name: dind-storage
               mountPath: /var/lib/docker
