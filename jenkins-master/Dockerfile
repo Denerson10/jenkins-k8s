@@ -98,7 +98,7 @@ RUN sed -i 's/ulimit -n 1048576/ulimit -n 65536/' /etc/init.d/docker
 RUN mkdir jenkins_config && chmod 777 -R /jenkins_config
 COPY ./config /jenkins_config
 RUN chmod -R 777 /jenkins_config
-COPY ./keys ~/.ssh
+COPY ./keys /root/.ssh
 
 RUN rm -rf /var/lib/apt/lists/*
 RUN echo "jenkins ALL=NOPASSWD: ALL" >> /etc/sudoers
