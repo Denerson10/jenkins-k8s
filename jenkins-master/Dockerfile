@@ -101,6 +101,7 @@ RUN chmod -R 777 /jenkins_config
 COPY ./keys /root/.ssh
 
 RUN chmod 600 /root/.ssh/id_rsa
+RUN chmod 644 /root/.ssh/id_rsa.pub
 
 RUN rm -rf /var/lib/apt/lists/*
 RUN echo "jenkins ALL=NOPASSWD: ALL" >> /etc/sudoers
