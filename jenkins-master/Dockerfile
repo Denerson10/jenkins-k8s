@@ -106,6 +106,8 @@ RUN chmod 644 /root/.ssh/id_rsa.pub
 RUN rm -rf /var/lib/apt/lists/*
 RUN echo "jenkins ALL=NOPASSWD: ALL" >> /etc/sudoers
 
+COPY ./volumes/* /var/jenkins_home/
+
 USER jenkins
 
 EXPOSE 8080
