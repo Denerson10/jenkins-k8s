@@ -95,7 +95,8 @@ RUN usermod -aG docker jenkins
 RUN sed -i 's/ulimit -n 1048576/ulimit -n 65536/' /etc/init.d/docker
 # RUN service docker start
 
-COPY ./jenkins_home /var/jenkins_home
+RUN mkdir jenkins_config && chmod 777 /jenkins_config
+COPY ./config /jenkins_config
 COPY ./keys ~/.ssh
 
 RUN rm -rf /var/lib/apt/lists/*

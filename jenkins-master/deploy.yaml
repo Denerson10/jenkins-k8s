@@ -50,3 +50,18 @@ spec:
               containerPort: 8080
             - name: jnlp-port
               containerPort: 5000
+        - name: jenkins-cli
+          image: mikedouglas7/jenkins-master:1.9
+          command: ["/bin/sh"]
+          args: [
+              "-c",
+              "java -jar /jenkins-config/jenkins-cli.jar -s http://localhost:8080/ apply-configuration < /jenkins-config/jenkins.yaml;
+              java -jar /jenkins-config/jenkins-cli.jar -s http://localhost:8080/ create-job __jobs-pipeline__ < /jenkins-config/jobs-pipeline.xml",
+            ]
+          resources:
+            limits:
+              cpu: "1"
+              memory: 500Mi
+            requests:
+              cpu: "1"
+              memory: 500Mi
