@@ -90,7 +90,7 @@ RUN curl -L https://github.com/docker/compose/releases/download/1.16.1/docker-co
 
 # give docker docker rights
 RUN usermod -aG docker jenkins
-# ?:
+
 # start docker
 RUN sed -i 's/ulimit -n 1048576/ulimit -n 65536/' /etc/init.d/docker
 # RUN service docker start
