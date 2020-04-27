@@ -4,4 +4,6 @@ java -jar /jenkins_config/jenkins-cli.jar -s http://localhost:8080/ apply-config
 java -jar /jenkins_config/jenkins-cli.jar -s http://localhost:8080/ create-job __jobs-pipeline__ < /jenkins_config/jobs-pipeline.xml
 ssh -T git@bitbucket.org
 
+cp /jenkins_config/secret.key /var/jenkins_home
+
 tail -f /dev/null
