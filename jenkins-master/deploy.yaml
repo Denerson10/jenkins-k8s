@@ -13,12 +13,11 @@ spec:
         fsGroup: 999
       containers:
         - name: jenkins
-          image: michaeldbs/jenkins-master:1.14
+          image: icarorobertos/jenkins-pravaler:0.1.1
           command: ["/bin/sh"]
           args: [
               "-c",
               "service docker start;
-              echo '986cc7e2cf04ab5449e4717d8b623ba58e43c5a29e4287c33368ebfaef66b512' > /var/jenkins_home/secret.key;
               ./usr/local/bin/jenkins.sh",
             ]
           securityContext:
@@ -52,7 +51,7 @@ spec:
             - name: jnlp-port
               containerPort: 5000
         - name: jenkins-cli
-          image: michaeldbs/jenkins-master:1.14
+          image: icarorobertos/jenkins-pravaler:0.1.1
           command: ["/bin/sh"]
           args: ["-c", "./jenkins_config/config.sh"]
           resources:
