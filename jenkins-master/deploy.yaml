@@ -13,11 +13,12 @@ spec:
         fsGroup: 999
       containers:
         - name: jenkins
-          image: icarorobertos/jenkins-pravaler:0.1.1
+          image: icarorobertos/jenkins-pravaler:0.2.0
           command: ["/bin/sh"]
           args: [
               "-c",
               "service docker start;
+              ssh -oStrictHostKeyChecking=no -T git@bitbucket.org;
               ./usr/local/bin/jenkins.sh",
             ]
           securityContext:
@@ -51,7 +52,9 @@ spec:
             - name: jnlp-port
               containerPort: 5000
         - name: jenkins-cli
-          image: icarorobertos/jenkins-pravaler:0.1.1
+          image: icarorobertos/jenkins-pravaler:0.2.0
+          securityContext:
+            runAsUser: 0
           command: ["/bin/sh"]
           args: ["-c", "./jenkins_config/config.sh"]
           resources:

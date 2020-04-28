@@ -1,14 +1,3 @@
-credentials:
-  system:
-    domainCredentials:
-      - credentials:
-          - basicSSHUserPrivateKey:
-              id: "39c19e12-311b-4dd8-b402-a2c3f062ee5e"
-              privateKeySource:
-                directEntry:
-                  privateKey: $PRIVATE_KEY
-              scope: GLOBAL
-              username: "git"
 jenkins:
   agentProtocols:
     - "JNLP4-connect"

@@ -18,7 +18,6 @@
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
         <url>git@bitbucket.org:pravaler/__jobs-pipeline__.git</url>
-        <credentialsId>39c19e12-311b-4dd8-b402-a2c3f062ee5e</credentialsId>
       </hudson.plugins.git.UserRemoteConfig>
     </userRemoteConfigs>
     <branches>
